@@ -2,16 +2,17 @@ import React, { Component } from 'react';
 import Tooltip from '@material-ui/core/Tooltip';
 
 class Heart extends Component {
-
     render() {
+      const {onClick, fillColor} = this.props
         return (
           <Tooltip
             title="Heart"
             placement="right">
               <g
+                onClick={onClick}
                 id="heart"
                 className="heart"
-                fill="#808080"
+                fill={fillColor}
                 fillOpacity="0.5"
                 stroke="#787878"
                 strokeWidth="0.5"

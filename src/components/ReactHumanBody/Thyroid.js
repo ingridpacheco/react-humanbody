@@ -3,7 +3,7 @@ import Tooltip from '@material-ui/core/Tooltip';
 
 class Thyroid extends Component {
 
-    render() {
+    render() { const {onClick, fillColor} = this.props
         return (
           <Tooltip
             title="Thyroid"
@@ -11,7 +11,7 @@ class Thyroid extends Component {
               <path
                 id="thyroid"
                 className="thyroid"
-                fill="#808080"
+                fill={fillColor} onClick={onClick}
                 fillOpacity="0.5"
                 d="M231.924,117.994h0.641l0.771,0.131l0.643-0.261l0.771-0.914l0.128-0.523
                   l0.384-0.784l0.769-0.914l0.136-0.653l0.77-0.261l0.387-0.914l0.389-0.914l0.386-1.045l0.256-0.261l0.512-0.261l0.259,0.914v0.523

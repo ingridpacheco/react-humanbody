@@ -3,7 +3,7 @@ import Tooltip from '@material-ui/core/Tooltip';
 
 class Adipose extends Component {
 
-    render() {
+    render() { const {onClick, fillColor} = this.props
         return (
           <Tooltip
             title="Adipose"
@@ -11,7 +11,7 @@ class Adipose extends Component {
               <g
                 id="adipose"
                 className="adipose"
-                fill="#808080"
+                fill={fillColor} onClick={onClick}
                 fillOpacity="0.5"
                 transform="translate(10.5,20)">
                   <path id="path4314" d="M217.595,299.357c-10.021-1.201-20.553-6.685-29.754-15.487

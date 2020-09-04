@@ -3,7 +3,7 @@ import Tooltip from '@material-ui/core/Tooltip';
 
 class Appendix extends Component {
 
-    render() {
+    render() { const {onClick, fillColor} = this.props
         return (
           <Tooltip
             title="Appendix"
@@ -11,7 +11,7 @@ class Appendix extends Component {
               <path
                 id="appendix"
                 className="appendix"
-                fill="#808080"
+                fill={fillColor} onClick={onClick}
                 fillOpacity="0.5"
                 stroke="#787878"
                 strokeWidth="0.5"

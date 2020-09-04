@@ -3,7 +3,7 @@ import Tooltip from '@material-ui/core/Tooltip';
 
 class SmallIntestine extends Component {
 
-    render() {
+    render() { const {onClick, fillColor} = this.props
         return (
           <Tooltip
             title="Small Intestine"
@@ -11,7 +11,7 @@ class SmallIntestine extends Component {
               <path
                 id="small_intestine" 
                 className="small_intestine"
-                fill="#808080"
+                fill={fillColor} onClick={onClick}
                 fillOpacity="0.5"
                 stroke="#787878"
                 strokeWidth="0.5"

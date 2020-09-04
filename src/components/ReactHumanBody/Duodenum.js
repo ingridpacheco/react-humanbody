@@ -3,7 +3,7 @@ import Tooltip from '@material-ui/core/Tooltip';
 
 class Duodenum extends Component {
 
-    render() {
+    render() { const {onClick, fillColor} = this.props
         return (
           <Tooltip
             title="Duodenum"
@@ -11,7 +11,7 @@ class Duodenum extends Component {
               <path
                 id="duodenum"
                 className="duodenum"
-                fill="#808080"
+                fill={fillColor} onClick={onClick}
                 fillOpacity="0.5"
                 stroke="#787878"
                 strokeWidth="0.5"

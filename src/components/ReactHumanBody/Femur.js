@@ -3,11 +3,14 @@ import Tooltip from '@material-ui/core/Tooltip';
 
 class Femur extends Component {
 
-    render() {
+    render() { const {onClick, fillColor} = this.props
         return (
+          <Tooltip
+            title="Femur"
+            placement="right">
           <path
             id="femur"
-            fill="#808080"
+            fill={fillColor} onClick={onClick}
             fillOpacity="0.5"
             stroke="#787878"
             strokeWidth="0.5"
@@ -27,6 +30,7 @@ class Femur extends Component {
               c-1.22,1.674-2.085,2.07-4.856,2.238c-2.688,0.163-2.947,0.024-3.938-2.047c-0.561-1.166-0.579-1.188-1.926-1.388
               c-4.461-0.687-10.588,0.801-11.971,2.888c-0.813,1.227-2.063,1.951-3.713,2.151C258.465,509.247,258.162,509.193,257.48,508.726
               L257.48,508.726z"/>
+          </Tooltip>
         )
     }
 }

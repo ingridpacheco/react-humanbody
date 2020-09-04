@@ -3,7 +3,7 @@ import Tooltip from '@material-ui/core/Tooltip';
 
 class SkeletalMuscle extends Component {
 
-    render() {
+    render() { const {onClick, fillColor} = this.props
         return (
           <Tooltip
             title="Skeletal Muscle"
@@ -11,7 +11,7 @@ class SkeletalMuscle extends Component {
               <g
                 id="skeletal_muscle"   
                 className="skeletal_muscle"
-                fill="#808080"
+                fill={fillColor} onClick={onClick}
                 fillOpacity="0.5"
                 transform="translate(34.453243,16.994796)">
                   <path id="path4883" d="M161.585,423.519c-3.51-12.462-5.706-25.672-5.7-34.291

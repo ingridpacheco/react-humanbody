@@ -3,7 +3,7 @@ import Tooltip from '@material-ui/core/Tooltip';
 
 class CirculatorySystem extends Component {
 
-    render() {
+    render() { const {onClick, fillColor} = this.props
         return (
           <Tooltip
             title="Circulatory System"
@@ -11,7 +11,7 @@ class CirculatorySystem extends Component {
               <g
                 id="circulatory_system" 
                 className="circulatory_system" 
-                fill="#808080"
+                fill={fillColor} onClick={onClick}
                 fillOpacity="0.5"
                 transform="translate(118.53498,19.115319)">
                   <path id="path4239" d="M61.632,393.265c0-0.128,0.748-2.486,1.663-5.262

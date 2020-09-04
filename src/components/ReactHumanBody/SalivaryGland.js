@@ -3,7 +3,7 @@ import Tooltip from '@material-ui/core/Tooltip';
 
 class SalivaryGland extends Component {
 
-    render() {
+    render() { const {onClick, fillColor} = this.props
         return (
           <Tooltip
             title="Salivary Gland"
@@ -11,7 +11,7 @@ class SalivaryGland extends Component {
               <path
                 id="salivary_gland" 
                 className="salivary_gland"
-                fill="#808080"
+                fill={fillColor} onClick={onClick}
                 fillOpacity="0.5"
                 stroke="#787878"
                 strokeWidth="0.5"

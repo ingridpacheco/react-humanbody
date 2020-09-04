@@ -1,6 +1,4 @@
 import React, { Component } from 'react';
-import PropTypes from "prop-types";
-import Tooltip from '@material-ui/core/Tooltip';
 import BodyLayout from './BodyLayout'
 import Nasopharynx from './Nasopharynx'
 import OralCavity from './OralCavity'
@@ -36,7 +34,6 @@ import Skin from './Skin'
 const DEFAULTSHOWSTATUS = true
 const DEFAULTFILLCOLOR = "#808080"
 const DEFAULTFILLOPACITY = "0.5"
-
 
 const organMap = {
   nasopharynx : {
@@ -223,30 +220,54 @@ const organMap = {
 
 class BodyMap extends Component {
 
-  componentDidUpdate(){
-    //this.props.bodyHighlight();
-  }
-
-  componentDidMount(){
-    //this.props.bodyHighlight();
+  constructor(props){
+    super(props)
+    this.state = {
+      brightColor: {
+        nasopharynx: false,
+        oralCavity: false,
+        kidney: false,
+        testis: false,
+        eye:false,
+        lung:false,
+        heart:false,
+        brain:false,
+        breast:false,
+        thyroid:false,
+        adrenalGland:false,
+        pancreas:false,
+        femur:false,
+        circulatorySystem:false,
+        esophagus:false,
+        stomach:false,
+        smallIntestine:false,
+        appendix:false,
+        rectum:false,
+        anus:false,
+        duodenum:false,
+        liver:false,
+        galbladder:false,
+        salivaryGland:false,
+        colon:false,
+        urinaryBladder:false,
+        prostate:false,
+        skeletalMuscle:false,
+        adipose:false,
+        skin:false,
+      }
+    }
   }
 
   getFillColor = (id) => {
-    return organMap &&
-           organMap[id] &&
-           organMap[id]['fillColor'] ||
-           DEFAULTFILLCOLOR;
+    const {brightColor} = this.state
+    return brightColor[id] ? "#FF3459" : ((organMap && organMap[id] && organMap[id]['fillColor']) || DEFAULTFILLCOLOR);
   }
 
   getFillOpacity = (id) => {
-    return organMap &&
+    return (organMap &&
            organMap[id] &&
-           organMap[id]['fillOpacity'] ||
+           organMap[id]['fillOpacity']) ||
            DEFAULTFILLOPACITY;
-  }
-
-  onClick = (e) => {
-    console.log("Hey you clicked on my", e && e.target && e.target.id);
   }
 
   getShowStatus = (id) => {
@@ -258,15 +279,22 @@ class BodyMap extends Component {
   }
 
   getTooltipTitle = (id) => {
-    return organMap &&
+    return (organMap &&
            organMap[id] &&
-           organMap[id]['tooltipTitle'] ||
+           organMap[id]['tooltipTitle']) ||
            id.toUpperCase();
   }
 
-  render () {
+  changeColor = (id, e) => {
+    const {brightColor} = this.state
+    brightColor[id] = !brightColor[id]
+    this.setState({
+      brightColor
+    })
+    console.log("Hey you clicked on my", id);
+  }
 
-  	const { classes } = this.props;
+  render () {
     return (
       <svg
         version="1.1"
@@ -292,210 +320,210 @@ class BodyMap extends Component {
             show={this.getShowStatus('nasopharynx')}
             fillColor={this.getFillColor('nasopharynx')}
             fillOpacity={this.getFillOpacity('nasopharynx')}
-            onClick={this.onClick}
+            onClick={()=> this.changeColor('nasopharynx')}
             tooltipTitle={this.getTooltipTitle('nasopharynx')}
           />
           <OralCavity
             show={this.getShowStatus('oralCavity')}
             fillColor={this.getFillColor('oralCavity')}
             fillOpacity={this.getFillOpacity('oralCavity')}
-            onClick={this.onClick}
+            onClick={()=> this.changeColor('oralCavity')}
             tooltipTitle={this.getTooltipTitle('oralCavity')}
           /> 
           <Kidney
             show={this.getShowStatus('kidney')}
             fillColor={this.getFillColor('kidney')}
             fillOpacity={this.getFillOpacity('kidney')}
-            onClick={this.onClick}
+            onClick={()=> this.changeColor('kidney')}
             tooltipTitle={this.getTooltipTitle('kidney')}
           />
           <Testis
             show={this.getShowStatus('testis')}
             fillColor={this.getFillColor('testis')}
             fillOpacity={this.getFillOpacity('testis')}
-            onClick={this.onClick}
+            onClick={()=> this.changeColor('testis')}
             tooltipTitle={this.getTooltipTitle('testis')}
           />
           <Eye
             show={this.getShowStatus('eye')}
             fillColor={this.getFillColor('eye')}
             fillOpacity={this.getFillOpacity('eye')}
-            onClick={this.onClick}
+            onClick={()=> this.changeColor('eye')}
             tooltipTitle={this.getTooltipTitle('eye')}
           />
-          <Lung />
+          <Lung
             show={this.getShowStatus('lung')}
             fillColor={this.getFillColor('lung')}
             fillOpacity={this.getFillOpacity('lung')}
-            onClick={this.onClick}
+            onClick={()=> this.changeColor('lung')}
             tooltipTitle={this.getTooltipTitle('lung')}
           />
-          <Heart />
+          <Heart
             show={this.getShowStatus('heart')}
             fillColor={this.getFillColor('heart')}
             fillOpacity={this.getFillOpacity('heart')}
-            onClick={this.onClick}
+            onClick={() => this.changeColor('heart')}
             tooltipTitle={this.getTooltipTitle('heart')}
           />
-          <Brain />
+          <Brain
             show={this.getShowStatus('brain')}
             fillColor={this.getFillColor('brain')}
             fillOpacity={this.getFillOpacity('brain')}
-            onClick={this.onClick}
+            onClick={()=> this.changeColor('brain')}
             tooltipTitle={this.getTooltipTitle('brain')}
           />
-          <Breast />
+          <Breast
             show={this.getShowStatus('breast')}
             fillColor={this.getFillColor('breast')}
             fillOpacity={this.getFillOpacity('breast')}
-            onClick={this.onClick}
+            onClick={()=> this.changeColor('breast')}
             tooltipTitle={this.getTooltipTitle('breast')}
           />
-          <Thyroid />
+          <Thyroid
             show={this.getShowStatus('thyroid')}
             fillColor={this.getFillColor('thyroid')}
             fillOpacity={this.getFillOpacity('thyroid')}
-            onClick={this.onClick}
+            onClick={()=> this.changeColor('thyroid')}
             tooltipTitle={this.getTooltipTitle('thyroid')}
           />
-          <AdrenalGland />
+          <AdrenalGland
             show={this.getShowStatus('adrenalGland')}
             fillColor={this.getFillColor('adrenalGland')}
             fillOpacity={this.getFillOpacity('adrenalGland')}
-            onClick={this.onClick}
+            onClick={()=> this.changeColor('adrenalGland')}
             tooltipTitle={this.getTooltipTitle('adrenalGland')}
           />
-          <Pancreas />
+          <Pancreas
             show={this.getShowStatus('pancreas')}
             fillColor={this.getFillColor('pancreas')}
             fillOpacity={this.getFillOpacity('pancreas')}
-            onClick={this.onClick}
+            onClick={()=> this.changeColor('pancreas')}
             tooltipTitle={this.getTooltipTitle('pancreas')}
           />
-          <Femur />
+          <Femur
             show={this.getShowStatus('femur')}
             fillColor={this.getFillColor('femur')}
             fillOpacity={this.getFillOpacity('femur')}
-            onClick={this.onClick}
+            onClick={()=> this.changeColor('femur')}
             tooltipTitle={this.getTooltipTitle('femur')}
           />
-          <CirculatorySystem />
+          <CirculatorySystem
             show={this.getShowStatus('circulatorySystem')}
             fillColor={this.getFillColor('circulatorySystem')}
             fillOpacity={this.getFillOpacity('circulatorySystem')}
-            onClick={this.onClick}
+            onClick={()=> this.changeColor('circulatorySystem')}
             tooltipTitle={this.getTooltipTitle('circulatorySystem')}
           />
-          <Esophagus />
+          <Esophagus
             show={this.getShowStatus('esophagus')}
             fillColor={this.getFillColor('esophagus')}
             fillOpacity={this.getFillOpacity('esophagus')}
-            onClick={this.onClick}
+            onClick={()=> this.changeColor('esophagus')}
             tooltipTitle={this.getTooltipTitle('esophagus')}
           />
-          <Stomach />
+          <Stomach
             show={this.getShowStatus('stomach')}
             fillColor={this.getFillColor('stomach')}
             fillOpacity={this.getFillOpacity('stomach')}
-            onClick={this.onClick}
+            onClick={()=> this.changeColor('stomach')}
             tooltipTitle={this.getTooltipTitle('stomach')}
           />
-          <SmallIntestine />
+          <SmallIntestine
             show={this.getShowStatus('smallIntestine')}
             fillColor={this.getFillColor('smallIntestine')}
             fillOpacity={this.getFillOpacity('smallIntestine')}
-            onClick={this.onClick}
+            onClick={()=> this.changeColor('smallIntestine')}
             tooltipTitle={this.getTooltipTitle('smallIntestine')}
           />
-          <Appendix />
+          <Appendix
             show={this.getShowStatus('appendix')}
             fillColor={this.getFillColor('appendix')}
             fillOpacity={this.getFillOpacity('appendix')}
-            onClick={this.onClick}
+            onClick={()=> this.changeColor('appendix')}
             tooltipTitle={this.getTooltipTitle('appendix')}
           />
-          <Rectum />
+          <Rectum
             show={this.getShowStatus('rectum')}
             fillColor={this.getFillColor('rectum')}
             fillOpacity={this.getFillOpacity('rectum')}
-            onClick={this.onClick}
+            onClick={()=> this.changeColor('rectum')}
             tooltipTitle={this.getTooltipTitle('rectum')}
           />
-          <Anus />
+          <Anus
             show={this.getShowStatus('anus')}
             fillColor={this.getFillColor('anus')}
             fillOpacity={this.getFillOpacity('anus')}
-            onClick={this.onClick}
+            onClick={()=> this.changeColor('anus')}
             tooltipTitle={this.getTooltipTitle('anus')}
           />
-          <Duodenum />
+          <Duodenum
             show={this.getShowStatus('duodenum')}
             fillColor={this.getFillColor('duodenum')}
             fillOpacity={this.getFillOpacity('duodenum')}
-            onClick={this.onClick}
+            onClick={()=> this.changeColor('duodenum')}
             tooltipTitle={this.getTooltipTitle('duodenum')}
           />
-          <Liver />
+          <Liver
             show={this.getShowStatus('liver')}
             fillColor={this.getFillColor('liver')}
             fillOpacity={this.getFillOpacity('liver')}
-            onClick={this.onClick}
+            onClick={()=> this.changeColor('liver')}
             tooltipTitle={this.getTooltipTitle('liver')}
           />
-          <GalBladder />
+          <GalBladder
             show={this.getShowStatus('galbladder')}
             fillColor={this.getFillColor('galbladder')}
             fillOpacity={this.getFillOpacity('galbladder')}
-            onClick={this.onClick}
+            onClick={()=> this.changeColor('galbladder')}
             tooltipTitle={this.getTooltipTitle('galbladder')}
           />
-          <SalivaryGland />
+          <SalivaryGland
             show={this.getShowStatus('salivaryGland')}
             fillColor={this.getFillColor('salivaryGland')}
             fillOpacity={this.getFillOpacity('salivaryGland')}
-            onClick={this.onClick}
+            onClick={()=> this.changeColor('salivaryGland')}
             tooltipTitle={this.getTooltipTitle('salivaryGland')}
           />
-          <Colon />
+          <Colon
             show={this.getShowStatus('colon')}
             fillColor={this.getFillColor('colon')}
             fillOpacity={this.getFillOpacity('colon')}
-            onClick={this.onClick}
+            onClick={()=> this.changeColor('colon')}
             tooltipTitle={this.getTooltipTitle('colon')}
           />
-          <UrinaryBladder />
+          <UrinaryBladder
             show={this.getShowStatus('urinaryBladder')}
             fillColor={this.getFillColor('urinaryBladder')}
             fillOpacity={this.getFillOpacity('urinaryBladder')}
-            onClick={this.onClick}
+            onClick={()=> this.changeColor('urinaryBladder')}
             tooltipTitle={this.getTooltipTitle('urinaryBladder')}
           />
-          <Prostate />
+          <Prostate
             show={this.getShowStatus('prostate')}
             fillColor={this.getFillColor('prostate')}
             fillOpacity={this.getFillOpacity('prostate')}
-            onClick={this.onClick}
+            onClick={()=> this.changeColor('prostate')}
             tooltipTitle={this.getTooltipTitle('prostate')}
           />
-          <SkeletalMuscle />
+          <SkeletalMuscle
             show={this.getShowStatus('skeletalMuscle')}
             fillColor={this.getFillColor('skeletalMuscle')}
             fillOpacity={this.getFillOpacity('skeletalMuscle')}
-            onClick={this.onClick}
+            onClick={()=> this.changeColor('skeletalMuscle')}
             tooltipTitle={this.getTooltipTitle('skeletalMuscle')}
           />
-          <Adipose />
+          <Adipose
             show={this.getShowStatus('adipose')}
             fillColor={this.getFillColor('adipose')}
             fillOpacity={this.getFillOpacity('adipose')}
-            onClick={this.onClick}
+            onClick={()=> this.changeColor('adipose')}
             tooltipTitle={this.getTooltipTitle('adipose')}
           />
           <Skin
             show={this.getShowStatus('skin')}
             fillColor={this.getFillColor('skin')}
             fillOpacity={this.getFillOpacity('skin')}
-            onClick={this.onClick}
+            onClick={()=> this.changeColor()}
             tooltipTitle={this.getTooltipTitle('skin')}
           />
       </svg>
